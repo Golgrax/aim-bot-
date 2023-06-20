@@ -1,39 +1,21 @@
-
-
--- enjoy for the boss! :) 
-
-local Players = game:GetService("Players")
-
-local TeleportService = game:GetService("TeleportService")
-
--- secret babft boss game id
-
-local PlaceID = 1930863474
-
-local function teleportPlayer()
-
-    local player = Players.LocalPlayer
-
-    
-
-    TeleportService:Teleport(PlaceID, player)
-
+-- Teleport function
+local function teleportToPlace()
+    local placeId = 1930863474
+    game:GetService("TeleportService"):Teleport(placeId)
 end
 
--- the button
-
+-- Create a button
 local button = Instance.new("TextButton")
-
+button.Size = UDim2.new(0, 100, 0, 50)
+button.Position = UDim2.new(0.5, -50, 0.5, -25)
+button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+button.TextColor3 = Color3.fromRGB(0, 0, 0)
 button.Text = "Golgrax"
+button.Font = Enum.Font.SourceSans
 
-button.Position = UDim2.new(0.5, 0, 0.5, 0)
+-- Parent the button to the game's core GUI
+button.Parent = game:GetService("CoreGui")
 
-button.Size = UDim2.new(0, 200, 0, 50)
-
-button.Parent = game.Players.LocalPlayer.PlayerGui -- Add the button to the player's GUI
-
--- Bind the teleportPlayer function to the button's MouseButton1Click event
-
-button.MouseButton1Click:Connect(teleportPlayer)
-
- 
+-- Connect the teleport function to the button's Activated event
+button.Activated:Connect(teleportToPlace)
